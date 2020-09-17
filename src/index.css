@@ -6,3 +6,9 @@
 nav {
     padding: 20px 0;
 }
+
+a.on-hover:hover {
+    text-decoration: none;
+    color: red;
+  }
+  
