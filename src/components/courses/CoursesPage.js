@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { connect } from "react-redux";
+
+import * as courseActions from '../../redux/actions/courseActions';
+import PropTypes from "prop-types";
 
 function CoursesPage() {
     const [course, setCourse] = useState({
@@ -11,8 +15,7 @@ function CoursesPage() {
 
     function submitHandler(event) {
         event.preventDefault();
-        console.log("course", course);
-        alert("This is called!!!");
+        this.props.dispatch(courseActions.createCourse(course));
     }
 
     return(
@@ -26,4 +29,14 @@ function CoursesPage() {
     );
 }
 
-export default CoursesPage;
+CoursesPage.PropTypes = {
+    dispatch: PropTypes.func.isRequired
+}
+
+function mapStateToProps(state) {
+    return {
+        courses: state.courses
+    }
+}
+
+export default connect(mapStateToProps)(CoursesPage);
